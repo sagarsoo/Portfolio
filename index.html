@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sagar Soni — Video Editor, Motion & Graphic Designer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body data-theme="light" class="bg-[#EDEBE6] text-[#2B2825] font-inter antialiased selection:bg-[#7A8471] selection:text-white overflow-x-hidden">
+
+    <!-- Dynamic Floating Blob & Particle Cursor Canvas -->
+    <canvas id="cursor-canvas" class="fixed inset-0 w-full h-full pointer-events-none z-[9999]"></canvas>
+
+    <!-- Apple-Style Frosted Glass Pill Navbar (Matching Sage Reference) -->
+    <header class="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[94%] max-w-6xl">
+        <nav class="glass-nav px-6 md:px-10 py-3.5 rounded-full flex items-center justify-between transition-all duration-300">
+            <!-- Brand Monogram / Logo -->
+            <button onclick="switchPage('home')" class="flex items-center gap-3 group text-left">
+                <div class="w-9 h-9 rounded-full bg-white/30 border border-white/60 flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform">
+                    <span class="font-serif-editorial text-xl font-semibold tracking-tighter text-[#2B2825]">S</span>
+                </div>
+                <span class="font-serif-editorial text-xl font-medium tracking-wide text-[#2B2825] hidden sm:inline">Sagar Soni</span>
+            </button>
+
+            <!-- Navigation Links -->
+            <div class="flex items-center gap-1 sm:gap-2 md:gap-7 text-xs sm:text-sm font-normal tracking-wide text-[#2B2825]/90">
+                <button onclick="switchPage('home')" id="nav-home" class="nav-pill active-nav px-3 py-1.5 rounded-full transition-all">Home</button>
+                <button onclick="switchPage('video')" id="nav-video" class="nav-pill px-3 py-1.5 rounded-full transition-all">Video Editing</button>
+                <button onclick="switchPage('motion')" id="nav-motion" class="nav-pill px-3 py-1.5 rounded-full transition-all">Motion Graphics</button>
+                <button onclick="switchPage('graphics')" id="nav-graphics" class="nav-pill px-3 py-1.5 rounded-full transition-all">Graphic Design</button>
+                <button onclick="scrollToContact()" class="nav-pill px-3 py-1.5 rounded-full transition-all hidden md:inline-block">Contact</button>
+            </div>
+
+            <!-- Quick Upload CTA -->
+            <button onclick="openUploadModal()" class="glass-cta px-4 py-2 rounded-full text-xs sm:text-sm font-medium flex items-center gap-2">
+                <span>+ Add Media</span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Floating theme control: keeps the navbar clean and stays accessible while scrolling -->
+    <button id="theme-toggle" class="theme-toggle theme-float" type="button"
+            aria-label="Switch to dark mode" aria-pressed="false"
+            title="Switch to dark mode" data-tooltip="Switch to dark mode">
+        <span id="theme-toggle-icon" class="theme-toggle-icon" aria-hidden="true">☼</span>
+    </button>
+
+    <!-- ========================================== -->
+    <!-- VIEW 1: HOME PAGE (Editorial Sage Layout)  -->
+    <!-- ========================================== -->
+    <div id="view-home" class="page-view active">
+        
+        <!-- HERO BANNER: Full-bleed atmospheric frame with oversized bottom-anchored serif title -->
+        <section class="hero-portrait relative w-full h-[86vh] min-h-[580px] max-h-[880px] overflow-hidden select-none">
+            <img src="assets/sagar-soni-hero.png"
+                 alt="Portrait of Sagar Soni"
+                 class="hero-portrait-image w-full h-full object-cover object-center">
+            <div class="hero-shade absolute inset-0"></div>
+
+            <!-- Floating Subtitle Tag stays clear of the portrait and navigation -->
+            <div class="absolute top-32 left-6 md:left-16 right-6 flex justify-between items-center text-white/90 text-xs sm:text-sm uppercase tracking-[0.25em]">
+                <span>Visual Storyteller &bull; Portfolio</span>
+                <span class="hidden sm:inline">Video &bull; Motion &bull; Graphic Design</span>
+            </div>
+
+            <!-- Name is anchored to the lower-right negative space, away from the face -->
+            <div class="hero-name-wrap">
+                <h1 class="hero-name font-serif-editorial">Sagar Soni</h1>
+            </div>
+        </section>
+
+        <!-- SECTION 1: Philosophy & About Me (Asymmetric 2-Column Editorial Split) -->
+        <section class="max-w-6xl mx-auto px-6 md:px-12 py-24 md:py-32">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8 items-center">
+                <div class="md:col-span-6 space-y-6">
+                    <span class="text-xs uppercase tracking-[0.2em] text-[#7A8471] font-medium block">About Me &bull; Creative Philosophy</span>
+                    <h2 class="font-serif-editorial text-4xl sm:text-5xl md:text-[3.4rem] leading-[1.08] text-[#2B2825] font-normal">
+                        New philosophy of visual rhythm: emotion &amp; motion
+                    </h2>
+                    <p class="text-[#5A554E] text-sm sm:text-base leading-relaxed max-w-md font-light">
+                        Hi, I'm <strong class="font-medium text-[#2B2825]">Sagar Soni</strong>. My work is about conscious simplicity — purposeful cuts, kinetic storytelling, and refined visual systems designed for real audience impact.
+                    </p>
+                    <p class="text-[#5A554E] text-sm sm:text-base leading-relaxed max-w-md font-light">
+                        I believe editing and motion design should elevate the story, not overwhelm it; combining modern pacing with a calm, cinematic, minimal approach.
+                    </p>
+                    <div class="pt-3 flex flex-wrap gap-4">
+                        <button onclick="switchPage('video')" class="glass-sage-btn px-7 py-3 rounded-full text-sm font-medium tracking-wide">
+                            Explore Video Reels
+                        </button>
+                        <button onclick="scrollToContact()" class="glass-outline-btn px-7 py-3 rounded-full text-sm font-medium tracking-wide">
+                            Get in Touch
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Right Editorial Showcase Card -->
+                <div class="md:col-span-6 relative">
+                    <div class="relative mx-auto max-w-md aspect-[4/4.2] rounded-3xl overflow-hidden shadow-2xl group">
+                        <img src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=1200&q=80" 
+                             alt="Timeline Editing Craft" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+                        <div class="absolute bottom-6 left-6 right-6 glass-card p-5 rounded-2xl flex items-center justify-between">
+                            <div>
+                                <p class="text-xs uppercase tracking-widest text-white/80">Showreel 2026</p>
+                                <p class="font-serif-editorial text-2xl text-white">Cinematic Montage</p>
+                            </div>
+                            <button onclick="switchPage('video')" class="glass-cta w-12 h-12 rounded-full flex items-center justify-center text-white text-lg">
+                                &#9654;
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: 3-Column Editorial Showcase (Matching "Pure care by nature" Grid) -->
+        <section class="max-w-6xl mx-auto px-6 md:px-12 py-12 md:py-20">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+                
+                <!-- Card 1: Video Editing Vertical Preview -->
+                <div onclick="switchPage('video')" class="md:col-span-4 group cursor-pointer">
+                    <div class="aspect-[3/3.8] rounded-2xl overflow-hidden bg-[#D9D4CC] relative shadow-md">
+                        <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=900&q=80" 
+                             alt="Video Editing" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-black/15 group-hover:bg-black/30 transition-colors"></div>
+                        <div class="absolute top-4 left-4 glass-pill px-3.5 py-1 rounded-full text-xs text-white tracking-wider">01 / Edit</div>
+                        <div class="absolute bottom-5 left-5 right-5 flex justify-between items-end">
+                            <div>
+                                <h3 class="font-serif-editorial text-3xl text-white">Video Editing</h3>
+                                <p class="text-xs text-white/80">Commercials, Narrative &amp; Pacing</p>
+                            </div>
+                            <span class="glass-cta w-10 h-10 rounded-full flex items-center justify-center text-white text-sm">&rarr;</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2: Motion Graphics Vertical Preview -->
+                <div onclick="switchPage('motion')" class="md:col-span-4 group cursor-pointer">
+                    <div class="aspect-[3/3.8] rounded-2xl overflow-hidden bg-[#D9D4CC] relative shadow-md">
+                        <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=900&q=80" 
+                             alt="Motion Graphics" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-black/15 group-hover:bg-black/30 transition-colors"></div>
+                        <div class="absolute top-4 left-4 glass-pill px-3.5 py-1 rounded-full text-xs text-white tracking-wider">02 / Motion</div>
+                        <div class="absolute bottom-5 left-5 right-5 flex justify-between items-end">
+                            <div>
+                                <h3 class="font-serif-editorial text-3xl text-white">Motion Design</h3>
+                                <p class="text-xs text-white/80">Kinetic Type, Title Sequences &amp; VFX</p>
+                            </div>
+                            <span class="glass-cta w-10 h-10 rounded-full flex items-center justify-center text-white text-sm">&rarr;</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Column 3: Text Block + Graphic Design Horizontal Card -->
+                <div class="md:col-span-4 flex flex-col justify-between h-full space-y-6">
+                    <div class="space-y-4 pt-2">
+                        <h3 class="font-serif-editorial text-4xl sm:text-[2.6rem] leading-[1.1] text-[#2B2825]">
+                            Pure craft by frame
+                        </h3>
+                        <p class="text-sm text-[#5A554E] leading-relaxed font-light">
+                            Thoughtfully crafted visual sequences designed to bring rhythm and clarity to your brand story.
+                        </p>
+                        <p class="text-sm text-[#5A554E] leading-relaxed font-light">
+                            Seamless transitions, expressive typography, and a minimalist aesthetic help support memorable storytelling — effortlessly, every frame.
+                        </p>
+                    </div>
+
+                    <div onclick="switchPage('graphics')" class="group cursor-pointer rounded-2xl overflow-hidden bg-[#D9D4CC] relative aspect-[16/10] shadow-md">
+                        <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=900&q=80" 
+                             alt="Graphic Design" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-black/25 group-hover:bg-black/40 transition-colors"></div>
+                        <div class="absolute top-3 left-3 glass-pill px-3 py-1 rounded-full text-[11px] text-white">03 / Visual Identity</div>
+                        <div class="absolute bottom-4 left-4 right-4 flex justify-between items-center">
+                            <div>
+                                <h4 class="font-serif-editorial text-2xl text-white">Graphic Design Gallery</h4>
+                                <p class="text-[11px] text-white/85">Posters, Key Art &amp; Brand Systems</p>
+                            </div>
+                            <span class="glass-cta w-9 h-9 rounded-full flex items-center justify-center text-white text-xs">&rarr;</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECTION 3: Giant "work" Watermark Section (Matching "new / All-in-One Complex" Layout) -->
+        <section class="max-w-6xl mx-auto px-6 md:px-12 py-20 md:py-28 relative overflow-hidden">
+            
+            <!-- Top Row: Title Left + Overlapping Image Right -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center relative z-10">
+                <div class="md:col-span-5 space-y-3">
+                    <h2 class="font-serif-editorial text-4xl sm:text-5xl leading-[1.1] text-[#2B2825]">
+                        All-in-One<br>Visual Suite
+                    </h2>
+                    <p class="text-sm text-[#5A554E] max-w-xs font-light">
+                        Multifunctional creative direction designed to unify video editing, motion graphics, and graphic design without compromising quality.
+                    </p>
+                </div>
+                <div class="md:col-span-7">
+                    <div class="aspect-[16/9] rounded-2xl overflow-hidden shadow-lg bg-[#DFDBD2]">
+                        <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=1200&q=80" 
+                             alt="Creative Suite" 
+                             class="w-full h-full object-cover">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Giant Muted Sage Background Typography -->
+            <div class="my-[-3rem] sm:my-[-5rem] md:my-[-7rem] select-none pointer-events-none flex justify-center">
+                <span class="font-serif-editorial text-[34vw] sm:text-[28vw] md:text-[23rem] leading-none text-[#7A8471]/25 tracking-tight">
+                    work
+                </span>
+            </div>
+
+            <!-- Bottom Row: Overlapping Image Left + Description & Pill Button Right -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-end relative z-10">
+                <div class="md:col-span-6">
+                    <div class="aspect-[16/10] rounded-2xl overflow-hidden shadow-lg bg-[#DFDBD2]">
+                        <img src="https://images.unsplash.com/photo-1600132806370-bf17e65e942f?auto=format&fit=crop&w=1200&q=80" 
+                             alt="Design Process" 
+                             class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <div class="md:col-span-6 space-y-5 md:pl-6">
+                    <p class="text-sm text-[#5A554E] leading-relaxed font-light max-w-md">
+                        Each project combines narrative pacing, kinetic motion, and bespoke graphic design to work in one cohesive language. The portfolio focuses on smart minimalism — sharper cuts, deeper impact, and consistent visual identity.
+                    </p>
+                    <div class="flex flex-wrap gap-3">
+                        <button onclick="switchPage('video')" class="glass-outline-btn px-7 py-2.5 rounded-full text-xs sm:text-sm font-medium">
+                            Video Catalog
+                        </button>
+                        <button onclick="switchPage('motion')" class="glass-outline-btn px-7 py-2.5 rounded-full text-xs sm:text-sm font-medium">
+                            Motion Catalog
+                        </button>
+                        <button onclick="switchPage('graphics')" class="glass-outline-btn px-7 py-2.5 rounded-full text-xs sm:text-sm font-medium">
+                            Graphic Gallery
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: Contact Details Section -->
+        <section id="contact-section" class="max-w-5xl mx-auto px-6 md:px-12 pb-28 pt-10">
+            <div class="glass-card rounded-[2.5rem] p-8 sm:p-14 md:p-16 border border-white/70 shadow-xl relative overflow-hidden">
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-10 items-center">
+                    <div class="md:col-span-7 space-y-4">
+                        <span class="text-xs uppercase tracking-[0.2em] text-[#7A8471] font-semibold">Initiate a Collaboration</span>
+                        <h2 class="font-serif-editorial text-4xl sm:text-5xl text-[#2B2825] leading-tight">
+                            Let's craft your next visual story.
+                        </h2>
+                        <p class="text-sm sm:text-base text-[#5A554E] font-light max-w-md">
+                            Available for freelance video editing, motion graphics packages, brand identity systems, and creative direction.
+                        </p>
+                    </div>
+                    <div class="md:col-span-5 space-y-4">
+                        <div class="glass-pill p-4 rounded-2xl flex items-center justify-between">
+                            <div>
+                                <span class="text-[11px] uppercase tracking-wider text-[#7A8471] block">Direct Email</span>
+                                <a href="mailto:sagar.soni@portfolio.studio" class="text-sm sm:text-base font-medium text-[#2B2825] hover:underline">sagar.soni@portfolio.studio</a>
+                            </div>
+                            <span class="text-lg">&#9993;</span>
+                        </div>
+                        <div class="glass-pill p-4 rounded-2xl flex items-center justify-between">
+                            <div>
+                                <span class="text-[11px] uppercase tracking-wider text-[#7A8471] block">Phone / WhatsApp</span>
+                                <a href="tel:+919876543210" class="text-sm sm:text-base font-medium text-[#2B2825]">+91 98765 43210</a>
+                            </div>
+                            <span class="text-lg">&#9742;</span>
+                        </div>
+                        <div class="glass-pill p-4 rounded-2xl flex items-center justify-between">
+                            <div>
+                                <span class="text-[11px] uppercase tracking-wider text-[#7A8471] block">Disciplines</span>
+                                <span class="text-xs sm:text-sm text-[#2B2825]">Video Edit &bull; Motion &bull; Graphic Design</span>
+                            </div>
+                            <span class="text-lg">&#10022;</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- VIEW 2: VIDEO EDITING PAGE (Interactive)   -->
+    <!-- ========================================== -->
+    <div id="view-video" class="page-view hidden pt-32 pb-28 max-w-6xl mx-auto px-6 md:px-12">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6 border-b border-[#2B2825]/10 pb-8">
+            <div>
+                <button onclick="switchPage('home')" class="text-xs uppercase tracking-[0.2em] text-[#7A8471] mb-2 inline-flex items-center gap-1 hover:text-[#2B2825]">&larr; Back to Home</button>
+                <h1 class="font-serif-editorial text-5xl sm:text-6xl text-[#2B2825]">Video Editing</h1>
+                <p class="text-[#5A554E] text-sm sm:text-base mt-2 font-light max-w-xl">
+                    Upload, preview, edit details, or remove your video cuts. Supports MP4/WebM video files and cover stills.
+                </p>
+            </div>
+            <button onclick="openUploadModal('video')" class="glass-sage-btn px-7 py-3.5 rounded-full text-sm font-medium flex items-center gap-2 shrink-0">
+                <span>+ Upload Video Project</span>
+            </button>
+        </div>
+
+        <!-- Dynamic Video Grid -->
+        <div id="grid-video" class="grid grid-cols-1 md:grid-cols-2 gap-8"></div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- VIEW 3: MOTION GRAPHICS PAGE (Interactive) -->
+    <!-- ========================================== -->
+    <div id="view-motion" class="page-view hidden pt-32 pb-28 max-w-6xl mx-auto px-6 md:px-12">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6 border-b border-[#2B2825]/10 pb-8">
+            <div>
+                <button onclick="switchPage('home')" class="text-xs uppercase tracking-[0.2em] text-[#7A8471] mb-2 inline-flex items-center gap-1 hover:text-[#2B2825]">&larr; Back to Home</button>
+                <h1 class="font-serif-editorial text-5xl sm:text-6xl text-[#2B2825]">Motion Graphics</h1>
+                <p class="text-[#5A554E] text-sm sm:text-base mt-2 font-light max-w-xl">
+                    Interactive showcase for kinetic typography, logo animations, and title sequences. Play directly, edit metadata, or upload new reels.
+                </p>
+            </div>
+            <button onclick="openUploadModal('motion')" class="glass-sage-btn px-7 py-3.5 rounded-full text-sm font-medium flex items-center gap-2 shrink-0">
+                <span>+ Upload Motion Reel</span>
+            </button>
+        </div>
+
+        <!-- Dynamic Motion Grid -->
+        <div id="grid-motion" class="grid grid-cols-1 md:grid-cols-2 gap-8"></div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- VIEW 4: GRAPHIC DESIGN GALLERY (Interactive) -->
+    <!-- ========================================== -->
+    <div id="view-graphics" class="page-view hidden pt-32 pb-28 max-w-6xl mx-auto px-6 md:px-12">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6 border-b border-[#2B2825]/10 pb-8">
+            <div>
+                <button onclick="switchPage('home')" class="text-xs uppercase tracking-[0.2em] text-[#7A8471] mb-2 inline-flex items-center gap-1 hover:text-[#2B2825]">&larr; Back to Home</button>
+                <h1 class="font-serif-editorial text-5xl sm:text-6xl text-[#2B2825]">Graphic Design Gallery</h1>
+                <p class="text-[#5A554E] text-sm sm:text-base mt-2 font-light max-w-xl">
+                    Curated gallery of posters, brand identities, typography explorations, and digital artwork. Upload high-res visuals, edit titles, or inspect in full view.
+                </p>
+            </div>
+            <button onclick="openUploadModal('graphics')" class="glass-sage-btn px-7 py-3.5 rounded-full text-sm font-medium flex items-center gap-2 shrink-0">
+                <span>+ Upload Graphic Artwork</span>
+            </button>
+        </div>
+
+        <!-- Dynamic Graphic Design Grid -->
+        <div id="grid-graphics" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- MODAL 1: ADD / EDIT MEDIA ITEM             -->
+    <!-- ========================================== -->
+    <div id="media-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-black/40 backdrop-blur-md">
+        <div class="glass-modal w-full max-w-lg rounded-3xl p-7 sm:p-9 relative shadow-2xl border border-white/80">
+            <div class="flex justify-between items-center mb-6">
+                <h3 id="modal-title" class="font-serif-editorial text-3xl text-[#2B2825]">Add New Project</h3>
+                <button onclick="closeUploadModal()" class="glass-cta w-9 h-9 rounded-full flex items-center justify-center text-sm">&#10005;</button>
+            </div>
+
+            <form id="media-form" onsubmit="handleMediaSubmit(event)" class="space-y-4">
+                <input type="hidden" id="edit-item-id">
+
+                <div>
+                    <label class="block text-xs uppercase tracking-wider text-[#5A554E] mb-1.5">Category</label>
+                    <select id="item-category" class="w-full px-4 py-3 rounded-xl bg-white/60 border border-white/80 text-sm focus:outline-none focus:ring-2 focus:ring-[#7A8471]">
+                        <option value="video">Video Editing</option>
+                        <option value="motion">Motion Graphics</option>
+                        <option value="graphics">Graphic Design</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs uppercase tracking-wider text-[#5A554E] mb-1.5">Project Title</label>
+                    <input type="text" id="item-title" required placeholder="e.g., Luxury Fragrance Commercial Cut" 
+                           class="w-full px-4 py-3 rounded-xl bg-white/60 border border-white/80 text-sm focus:outline-none focus:ring-2 focus:ring-[#7A8471]">
+                </div>
+
+                <div>
+                    <label class="block text-xs uppercase tracking-wider text-[#5A554E] mb-1.5">Description / Role</label>
+                    <textarea id="item-desc" rows="2" placeholder="Describe pacing, tools used, or visual concept..." 
+                              class="w-full px-4 py-3 rounded-xl bg-white/60 border border-white/80 text-sm focus:outline-none focus:ring-2 focus:ring-[#7A8471]"></textarea>
+                </div>
+
+                <div>
+                    <label class="block text-xs uppercase tracking-wider text-[#5A554E] mb-1.5">Upload Video or Image File (From Device)</label>
+                    <input type="file" id="item-file" accept="video/*,image/*" 
+                           class="w-full text-xs text-[#5A554E] file:mr-4 file:py-2.5 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-medium file:bg-[#7A8471] file:text-white hover:file:bg-[#636B5B] cursor-pointer">
+                </div>
+
+                <div>
+                    <label class="block text-xs uppercase tracking-wider text-[#5A554E] mb-1.5">Or Paste Direct Media URL (Optional)</label>
+                    <input type="url" id="item-url" placeholder="https://..." 
+                           class="w-full px-4 py-3 rounded-xl bg-white/60 border border-white/80 text-sm focus:outline-none focus:ring-2 focus:ring-[#7A8471]">
+                </div>
+
+                <div class="pt-3 flex justify-end gap-3">
+                    <button type="button" onclick="closeUploadModal()" class="glass-outline-btn px-6 py-2.5 rounded-full text-xs sm:text-sm font-medium">Cancel</button>
+                    <button type="submit" class="glass-sage-btn px-7 py-2.5 rounded-full text-xs sm:text-sm font-medium">Save Project</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- MODAL 2: LIGHTBOX PLAYER / VIEWER          -->
+    <!-- ========================================== -->
+    <div id="player-modal" class="fixed inset-0 z-[110] hidden items-center justify-center p-4 sm:p-8 bg-black/80 backdrop-blur-xl">
+        <div class="w-full max-w-5xl relative">
+            <div class="flex justify-between items-center mb-4 text-white">
+                <div>
+                    <span id="player-category" class="text-xs uppercase tracking-[0.2em] text-white/70 block">Category</span>
+                    <h3 id="player-title" class="font-serif-editorial text-3xl">Project Title</h3>
+                </div>
+                <button onclick="closePlayerModal()" class="glass-cta w-11 h-11 rounded-full flex items-center justify-center text-white text-base">&#10005;</button>
+            </div>
+            <div id="player-container" class="w-full rounded-2xl overflow-hidden bg-black shadow-2xl max-h-[75vh] flex items-center justify-center"></div>
+            <p id="player-desc" class="text-white/80 text-sm mt-4 font-light"></p>
+        </div>
+    </div>
+
+    <!-- Footer / social links: replace the placeholder destinations with your final pages after testing -->
+    <footer class="portfolio-footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <span class="footer-name font-serif-editorial">Sagar Soni</span>
+                <span class="footer-subtitle">Video Editing · Motion Graphics · Graphic Design</span>
+            </div>
+            <nav class="social-links" aria-label="Social and contact links">
+                <!-- Replace YOUR_USERNAME / YOUR_PROFILE / YOUR_PHONE_NUMBER / YOUR_EMAIL with your details -->
+                <a class="social-link" href="https://www.instagram.com/YOUR_USERNAME/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle class="icon-fill" cx="17.6" cy="6.7" r="1"/></svg>
+                </a>
+                <a class="social-link" href="https://www.linkedin.com/in/YOUR_PROFILE/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8.5V19M5 5.2v.1M10 19v-6.1c0-2.2 1.2-3.5 3.1-3.5s3 1.3 3 3.5V19M10 10v9M3.6 8.5h2.8M3.6 19h2.8M10 10h.1"/><circle class="icon-fill" cx="5" cy="5" r="1.5"/></svg>
+                </a>
+                <a class="social-link" href="https://wa.me/YOUR_PHONE_NUMBER" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" title="WhatsApp">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 11.7a8.1 8.1 0 0 1-11.9 7.1L4 20l1.2-4a8.1 8.1 0 1 1 15-4.3Z"/><path d="M9 8.2c.2-.5.5-.5.8-.5h.4c.2 0 .3.1.4.4l.7 1.6c.1.3.1.4-.1.6l-.5.6c-.2.2-.2.4-.1.6.5.9 1.2 1.6 2.1 2.1.2.1.4.1.6-.1l.7-.8c.2-.2.4-.2.6-.1l1.5.7c.3.1.4.3.4.5 0 .3-.2 1.1-.7 1.5-.5.4-1.1.6-1.8.4-1-.2-2.2-.8-3.4-1.9-1.3-1.2-2-2.6-2.2-3.4-.2-.8.2-1.7.6-2.2Z"/></svg>
+                </a>
+                <a class="social-link" href="mailto:YOUR_EMAIL@example.com" aria-label="Email" title="Email">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg>
+                </a>
+            </nav>
+            <span class="footer-copyright">© 2026 Sagar Soni. All rights reserved.</span>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
